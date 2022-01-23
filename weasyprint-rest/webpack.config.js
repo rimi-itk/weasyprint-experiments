@@ -5,7 +5,7 @@ const path = require('path')
 module.exports = {
   // @see https://dev.to/bbenefield89/webpack-how-to-create-dynamic-entry-output-paths-1oc9
   // Keep only scss files whose name match the folder name.
-  entry: glob.sync('./weasyprint-rest/templates/*/*.scss').reduce((acc, path) => {
+  entry: glob.sync('./templates/*/*.scss').reduce((acc, path) => {
     const match = /([^/]+)\/\1\.scss$/.exec(path)
 
     if (match) {
@@ -25,7 +25,7 @@ module.exports = {
         // @see https://stackoverflow.com/a/67307684
         type: 'asset/resource',
         generator: {
-          filename: 'weasyprint-rest/templates/[name]/[name].css'
+          filename: 'templates/[name]/[name].css'
         },
 
         use: [

@@ -29,3 +29,11 @@ which is handy during development and debugging of templates.
 composer installation
 bin/console app:print:test --help
 ```
+
+## Print templates
+
+```sh
+cd weasyprint-rest/
+yarn install
+yarn watch
+```
