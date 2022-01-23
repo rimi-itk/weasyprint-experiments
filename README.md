@@ -23,6 +23,12 @@ open test/test.pdf
 [Skim](https://skim-app.sourceforge.io/) support automatic reload of PDF files
 which is handy during development and debugging of templates.
 
+You may have to restart the `weasyprint-rest` container after adding a new template:
+
+```sh
+docker-compose restart weasyprint-rest
+```
+
 ## Symfony
 
 ```sh
