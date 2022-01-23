@@ -10,14 +10,14 @@ networks:
 
 services:
   phpfpm:
-    image: itkdev/php7.4-fpm:alpine
+    image: itkdev/php8.1-fpm:alpine
     restart: unless-stopped
     networks:
       - app
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=128M
-      - COMPOSER_VERSION=1
+      - COMPOSER_VERSION=2
     volumes:
       - .:/app:delegated
 
@@ -28,7 +28,7 @@ services:
       - app
     ports:
       - '5000'
-    environment:
+    # environment:
       # The default TEMPLATE_DIRECTORY is /data/templates (cf. https://github.com/xpublisher/weasyprint-rest/blob/main/weasyprint_rest/env.py#L44-L45)
       # - TEMPLATE_DIRECTORY=/data/templates
       # Template cache is disabled in debug mode (cf. https://github.com/xpublisher/weasyprint-rest/blob/main/weasyprint_rest/print/template_loader.py#L56-L60)
@@ -60,3 +60,8 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${COMPOSE_SERVER_DOMAIN}`)"
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=websecure"
        #- "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=ITKBasicAuth@file"
+
+  node:
+    image: node:16
+    volumes:
+      - .:/app:delegated

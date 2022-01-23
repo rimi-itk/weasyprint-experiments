@@ -43,3 +43,18 @@ cd weasyprint-rest/
 yarn install
 yarn watch
 ```
+
+## Deployment
+
+```sh
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml up --detach
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml exec phpfpm composer install --no-dev --classmap-authoritative
+
+# Build Symfony assets
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml run --rm node yarn --cwd=/app install
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml run --rm node yarn --cwd=/app build
+
+# Build weasyprint-rest template assets
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml run --rm node yarn --cwd=/app/weasyprint-rest install
+docker-compose --env-file .env.docker.local -f docker-compose.server.yml run --rm node yarn --cwd=/app/weasyprint-rest build
+```
