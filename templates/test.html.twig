@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block body%}
+    <div class="container-fluid">
+        <h1>Hello, world!</h1>
+
+        {{ 'now'|date('Y-m-d H:i:s') }}
+
+        {% if tabular_data is defined %}
+            <table class="table">
+                {% if tabular_data['header'] is defined %}
+                    <thead>
+                        {% for row in tabular_data['header'] %}
+                            <tr>
+                                {% for cell in row %}
+                                    <th>{{ cell }}</th>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </thead>
+                {% endif %}
+
+                {% if tabular_data['footer'] is defined %}
+                    <tfoot>
+                        {% for row in tabular_data['footer'] %}
+                            <tr>
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tfoot>
+                {% endif %}
+
+                {% if tabular_data['rows'] is defined %}
+                    <tfoot>
+                        {% for row in tabular_data['rows'] %}
+                            <tr>
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tfoot>
+                {% endif %}
+
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

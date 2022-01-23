@@ -23,3 +23,9 @@ open test/test.pdf
 [Skim](https://skim-app.sourceforge.io/) support automatic reload of PDF files
 which is handy during development and debugging of templates.
 
+## Symfony
+
+```sh
+composer installation
+bin/console app:print:test --help
+```
